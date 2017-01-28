@@ -71,7 +71,7 @@
 
 .grids div { /* all blocks */
   display: table;
-  height: 153px;
+  height: 32px;
 }
 
 .grids div > p {
@@ -112,12 +112,19 @@ $(document).ready(function(){
        		<div class="ui-grid-b grids">
             
     
-  
+           <div align="center" class="ui-block-a"><p>笑ったメーター</p></div>
+            <div align="center" class="ui-block-b"><p></p></div>
+               <div align="center" class="ui-block-c"><p>ねむけメーター</p></div>
+           
                <div align="center" class="ui-block-a"><p><div id="jqmeter-container-left"></div></p></div>
               <div class="ui-block-b"><p><div id="msg_area">メッセージエリア</div></p></div>
                
                <div  align="center"  class="ui-block-c"><p><div id="jqmeter-container-right"></div></p></div>
                
+               
+                          <div align="center" class="ui-block-a"><div align="center" height="32px" ><input type="button" value="眠い" onclick="audio_play()"></div></div>
+            <div align="center" class="ui-block-b"><div align="center" height="32px"><input type="button" value="うける" onclick="audio_pause()"></div></div>
+               <div align="center" class="ui-block-c"><div align="center" height="32px"><input type="button" value="終わる" onclick="audio_pause()"></div></div>
                
       
             </div>
@@ -125,8 +132,8 @@ $(document).ready(function(){
   
        
         <div data-theme="a" data-role="footer" data-position="fixed">
-          <input type="button" value="眠い" onclick="audio_play()">
-              <input type="button" value="眠くない" onclick="audio_pause()">
+         
+              
               
                     <audio id="audio" controls>
                              <source src="audio/odai/VP100112.MP3">
@@ -154,6 +161,16 @@ $(document).ready(function(){
 <script type="text/javascript">
 function audio_play() {
    audio.play();
+   
+      
+   $('#jqmeter-container-right').jQMeter({
+    goal:'1000',
+    raised:'600',
+    meterOrientation:'vertical',
+    width:'40px',
+      height:'200px',
+      
+});
 }
  
 function audio_pause() {
@@ -166,24 +183,23 @@ function audio_pause() {
   // initial_d();
    
        $('#jqmeter-container-left').jQMeter({
-    goal:'$1,000',
-    raised:'$200',
+    goal:'1000',
+    raised:'0',
     meterOrientation:'vertical',
+        displayTotal:false,
     width:'40px',
     height:'200px'
  
 });
 
-   
-       $('#jqmeter-container-right').jQMeter({
-    goal:'$1,000',
-    raised:'$600',
+$('#jqmeter-container-right').jQMeter({
+      goal:'1000',
+    raised:'0',
+    displayTotal:false,
     meterOrientation:'vertical',
     width:'40px',
       height:'200px',
-      
 });
-
 
 
 </SCRIPT>
