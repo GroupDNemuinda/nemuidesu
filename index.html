@@ -15,12 +15,15 @@
    	<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
 	<script src="js/jquery.js"></script>
 	<script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/jqmeter.js"></script>
 	
     <script>
         $(document).on("mobileinit", function () {
           $.mobile.hashListeningEnabled = false;
           $.mobile.pushStateEnabled = false;
           $.mobile.changePage.defaults.changeHash = false;
+          
+          
         });
     </script> 
     
@@ -36,18 +39,47 @@
     
     <style type="text/css">
 		body {
-			padding: 0;
-			margin: 0;
-		}
-		html, body{
-			height: 100%;
-		}
- 		#map { min-height:640px; height: 100vh; margin: -15px;}
+ 		text-align:center;
 
-	
+		}
 
+		
+ 	
+
+
+#jqmeter-container-right {
+ width:100px;
 
 }
+
+
+
+#jqmeter-container-left {
+ width:100px;
+
+}
+
+#msg_area {
+ width:200px;
+}
+
+
+.grids {
+  border-style: solid;
+  border-width: 1px;
+}
+
+.grids div { /* all blocks */
+  display: table;
+  height: 153px;
+}
+
+.grids div > p {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
 	</style>
 
 </head>
@@ -58,24 +90,47 @@
 
         </div>
   
+
+
+ 
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#jqmeter-container-left').jQMeter();
+});
+
+$(document).ready(function(){
+    $('#jqmeter-container-right').jQMeter();
+});
+</script>
+
+
+
+    
         <div data-role="content">
-            <form id="check-user" class="ui-body ui-body-a ui-corner-all" data-ajax="false">
-                <fieldset>
-                    <div data-role="fieldcontain">
-                        <label for="username">ユーザー名:</label>
-                        <input type="text" value="" name="username" id="username"/>
-                    </div>                                 
-                    <div data-role="fieldcontain">                                     
-                        <label for="password">パスワード:</label>
-                        <input type="password" value="" name="password" id="password"/>
-                    </div>
-                    <input type="button" data-theme="a" name="submit" id="submit" value="ログイン">
-                </fieldset>
-            </form>                             
-        </div>
+
+       		<div class="ui-grid-b grids">
+            
+    
   
+               <div align="center" class="ui-block-a"><p><div id="jqmeter-container-left"></div></p></div>
+              <div class="ui-block-b"><p><div id="msg_area">メッセージエリア</div></p></div>
+               
+               <div  align="center"  class="ui-block-c"><p><div id="jqmeter-container-right"></div></p></div>
+               
+               
+      
+            </div>
+       </div>
+  
+       
         <div data-theme="a" data-role="footer" data-position="fixed">
-  
+          <input type="button" value="眠い" onclick="audio_play()">
+              <input type="button" value="眠くない" onclick="audio_pause()">
+              
+                    <audio id="audio" controls>
+                             <source src="audio/odai/VP100112.MP3">
+                    </audio>
         </div>
     </div>
     
@@ -94,8 +149,42 @@
         
         
     </div>
+    
+    
+<script type="text/javascript">
+function audio_play() {
+   audio.play();
+}
+ 
+function audio_pause() {
+   audio.pause();
+}
+</script>
+
+
 <SCRIPT>
-   initial_d();
+  // initial_d();
+   
+       $('#jqmeter-container-left').jQMeter({
+    goal:'$1,000',
+    raised:'$200',
+    meterOrientation:'vertical',
+    width:'40px',
+    height:'200px'
+ 
+});
+
+   
+       $('#jqmeter-container-right').jQMeter({
+    goal:'$1,000',
+    raised:'$600',
+    meterOrientation:'vertical',
+    width:'40px',
+      height:'200px',
+      
+});
+
+
 
 </SCRIPT>
 </body>
