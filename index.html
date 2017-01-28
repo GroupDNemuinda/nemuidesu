@@ -95,6 +95,19 @@
  
 
 <script type="text/javascript">
+
+var  ukeru_count = 0;  //  笑った値  0 - 1000
+
+var  sleepy = 0;  //  眠い  0 - 1000
+
+
+var  odai_index  = 0;   //   お題 index  0   
+
+var  boke_index  = 0;   //   ボケ index   0
+
+
+var  play_mode  = 0;   //  モード    0   通常モード    1   大喜利再生モード   2   ボケ登録モード
+
 $(document).ready(function(){
     $('#jqmeter-container-left').jQMeter();
 });
@@ -117,14 +130,38 @@ $(document).ready(function(){
                <div align="center" class="ui-block-c"><p>ねむけメーター</p></div>
            
                <div align="center" class="ui-block-a"><p><div id="jqmeter-container-left"></div></p></div>
-              <div class="ui-block-b"><p><div id="msg_area">メッセージエリア</div></p></div>
+               
+               
+              <div class="ui-block-b"><p>
+                  <div id="msg_area">
+                  <div id="msg_1" style="height:100px;width:100%">
+                         眠そうですね</div>
+                         
+                         
+                         
+               <div id="msg_2 "style="width:100%">
+                                </div>    
+              
+                 <div id="msg_3 "style="width:100%">
+              大喜利に参加しましょう</div>    
+              <div align="center"  id="msg_4 "style="width:100%">
+              <input type="button" value="参加する" onclick="oogiri_start()"></div>    
+                          
+              
+               
+              
+              </div></p>
+              
+              
+              
+              </div>
                
                <div  align="center"  class="ui-block-c"><p><div id="jqmeter-container-right"></div></p></div>
                
                
                           <div align="center" class="ui-block-a"><div align="center" height="32px" ><input type="button" value="眠い" onclick="audio_play()"></div></div>
-            <div align="center" class="ui-block-b"><div align="center" height="32px"><input type="button" value="うける" onclick="audio_pause()"></div></div>
-               <div align="center" class="ui-block-c"><div align="center" height="32px"><input type="button" value="終わる" onclick="audio_pause()"></div></div>
+            <div align="center" class="ui-block-b"><div align="center" height="32px"><input type="button" value="うける" onclick="click_ukeru()"></div></div>
+               <div align="center" class="ui-block-c"><div align="center" height="32px"><input type="button" value="うけない" onclick="click_ukenai()"></div></div>
                
       
             </div>
@@ -141,24 +178,120 @@ $(document).ready(function(){
         </div>
     </div>
     
-    
-  
-  
-  
-      
- 
-
-
-
-      
-
-        
-        
-        
+   
     </div>
     
     
 <script type="text/javascript">
+
+
+function oogiri_start(){
+
+
+
+}
+
+
+
+function  click_ukeru(){
+ if ( ukeru_count < 1000 ) {
+           ukeru_count = ukeru_count + 100;
+           
+           
+                      waratta_change( ukeru_count );
+           
+           
+           }
+           
+}
+
+
+
+function  click_ukenai(){
+ if ( ukeru_count > 0 ) {
+           ukeru_count = ukeru_count - 100;
+           
+           
+           waratta_change( ukeru_count );
+           
+           
+           }
+}
+
+
+
+
+
+function  nemuke_change( nemuke_value ) {
+
+     if ( nemuke_value > 100 ) {
+
+     $('#jqmeter-container-right').jQMeter({
+    goal:'1000',
+    raised:nemuke_value.toString(10),
+    meterOrientation:'vertical',
+    counterSpeed:500,
+    animationSpeed:500,
+    width:'40px',
+      height:'200px',
+      displayTotal: true
+     });
+     }
+     else {
+     
+     
+     $('#jqmeter-container-right').jQMeter({
+    goal:'1000',
+    raised:nemuke_value.toString(10),
+    meterOrientation:'vertical',
+    counterSpeed:500,
+    animationSpeed:500,
+    width:'40px',
+      height:'200px',
+      displayTotal: false
+     });
+     
+     }
+
+}
+
+
+
+function  waratta_change( waratta_value ) {
+
+     if ( waratta_value > 100 ) {
+
+     $('#jqmeter-container-left').jQMeter({
+    goal:'1000',
+    raised:waratta_value.toString(10),
+    meterOrientation:'vertical',
+    counterSpeed:500,
+    animationSpeed:500,
+    width:'40px',
+      height:'200px',
+      displayTotal: true
+     });
+     }
+     else {
+     
+     
+     $('#jqmeter-container-left').jQMeter({
+    goal:'1000',
+    raised:waratta_value.toString(10),
+    meterOrientation:'vertical',
+    counterSpeed:500,
+    animationSpeed:500,
+    width:'40px',
+      height:'200px',
+      displayTotal: false
+     });
+     
+     }
+
+}
+
+
+
 function audio_play() {
    audio.play();
    
