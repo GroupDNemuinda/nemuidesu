@@ -138,10 +138,41 @@ function set_awakeness( wkv ) {
 
     var awakes_v1= wkv * 10
     
+    
     nemuke_change( awakes_v1 )
+    
+    if ( sleepy >= 300 ) {
+         if(  awakes_v1 < 300 ) {
+           change_mode_oogiri( awakes_v1 );
+         
+         }
+    
+    }
+    
+    sleepy = awakes_v1;
 }
 
+function  change_mode_oogiri( awakeness_v ) {
+
+  if ( play_mode != 1 ) {
+          play_mode = 1;
+          //alert('oogiri mode ');
+          
+           $("#msg_1").text("眠そうですね 大喜利に参加しませんか？");
+           
+           //document.getElementById("oogirist").disabled = "";
+           $("#msg_4").style.display="block";
+           
+           $("#msg_3").text("大喜利に参加しませんか？");
+          }
+          
+          
+ //alert('oogiri mode ');
+}
+
+
 function set_waratta( wkv ) {
+     ukeru_count = wkv;
 
     var awakes_v1= wkv * 10
     
@@ -197,17 +228,18 @@ setInterval("check_sensor()",1000);
               <div class="ui-block-b"><p>
                   <div id="msg_area">
                   <div id="msg_1" style="height:100px;width:100%">
-                         眠そうですね</div>
+                         運転ご苦労様です</div>
                          
                          
                          
                <div id="msg_2 "style="width:100%">
                                 </div>    
               
-                 <div id="msg_3 "style="width:100%">
-              大喜利に参加しましょう</div>    
+                 <div id="msg_3 "style="width:100%">　　　　　
+                 
+              </div>    
               <div align="center"  id="msg_4 "style="width:100%">
-              <input type="button" value="参加する" onclick="oogiri_start()"></div>    
+              <input type="button" value="参加する" onclick="oogiri_start()" id="oogirist" ></div>    
                           
               
                
