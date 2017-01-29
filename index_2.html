@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>ねむいんですおおぎり</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />   
+	<!--
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0"/>
+ 
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+       -->
+       
+   	<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/jqmeter.js"></script>
+	
+    <script>
+        $(document).on("mobileinit", function () {
+          $.mobile.hashListeningEnabled = false;
+          $.mobile.pushStateEnabled = false;
+          $.mobile.changePage.defaults.changeHash = false;
+          
+          
+        });
+    </script> 
+    
+    
+
+	<!--
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    -->
+    
+
+
+  
+    
+    <style type="text/css">
+		body {
+ 		text-align:center;
+
+		}
+
+		
+ 	
+
+
+#jqmeter-container-right {
+ width:100px;
+
+}
+
+
+
+#jqmeter-container-left {
+ width:100px;
+
+}
+
+#msg_area {
+ width:200px;
+}
+
+
+.grids {
+  border-style: solid;
+  border-width: 1px;
+}
+
+.grids div { /* all blocks */
+  display: table;
+  height: 32px;
+}
+
+.grids div > p {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+	</style>
+
+</head>
+<body>
+    <div data-role="page" id="login" data-theme="a">
+        <div data-role="header" data-theme="a">       
+            <h3>ねむいんですおおぎり</h3>
+
+        </div>
+  
+
+
+ 
+
+<script type="text/javascript">
+
+
+var    warai_c = 0;
+
+var awakeness = [ 100, 80, 78, 65, 75, 72,50,22, 40, 34, 25, 25 ];
+
+
+
+function  check_sensor() {
+
+
+   
+/*   
+    var result = $.ajax({
+        type: 'GET',
+        url: 'http://192.168.225.25/',
+        async: false
+    }).responseText;
+    
+  */  
+   // return result;
+
+
+
+
+
+
+warai_c = warai_c + 1;
+
+awake_v = awakeness[ warai_c % 12 ];
+
+ $("#warai").text(warai_c.toString(10));
+  $("#nemuke").text(result);
+  
+  set_awakeness( awake_v );
+ 
+}
+
+function set_awakeness( wkv ) {
+
+    
+}
+
+
+
+var  ukeru_count = 0;  //  笑った値  0 - 1000
+
+var  sleepy = 1000;  //  眠い  0 - 1000
+
+
+var  odai_index  = 0;   //   お題 index  0   
+
+var  boke_index  = 0;   //   ボケ index   0
+
+
+var  play_mode  = 0;   //  モード    0   通常モード    1   大喜利再生モード   2   ボケ登録モード
+
+/*
+$(document).ready(function(){
+    $('#jqmeter-container-left').jQMeter();
+});
+
+$(document).ready(function(){
+    $('#jqmeter-container-right').jQMeter();
+});
+*/
+
+
+setInterval("check_sensor()",1000);
+
+</script>
+
+
+
+    
+        <div data-role="content">
+
+       		<div class="ui-grid-b grids">
+            
+    
+           <div align="center" class="ui-block-a"><p>笑ったメーター</p></div>
+            <div align="center" class="ui-block-b"><p></p></div>
+               <div align="center" class="ui-block-c"><p>ねむけメーター</p></div>
+           
+               <div align="center" class="ui-block-a"><p><div id="jqmeter-container-left"></div></p></div>
+               
+               
+              <div class="ui-block-b"><p>
+                  <div id="msg_area">
+                  <div id="msg_1" style="height:100px;width:100%">
+                         眠そうですね</div>
+                         
+                         
+                         
+               <div id="msg_2 "style="width:100%">
+                                </div>    
+              
+                 <div id="msg_3 "style="width:100%">
+              大喜利に参加しましょう</div>    
+              <div align="center"  id="msg_4 "style="width:100%">
+              <input type="button" value="参加する" onclick="oogiri_start()"></div>    
+                          
+              
+               
+              
+              </div></p>
+              
+              
+              
+              </div>
+               
+               <div  align="center"  class="ui-block-c"><p><div id="jqmeter-container-right"></div></p></div>
+               
+               
+                          <div align="center" class="ui-block-a"><div align="center" height="32px" ><input type="button" value="眠い" onclick="audio_play()"></div></div>
+            <div align="center" class="ui-block-b"><div align="center" height="32px"><input type="button" value="うける" onclick="click_ukeru()"></div></div>
+               <div align="center" class="ui-block-c"><div align="center" height="32px"><input type="button" value="うけない" onclick="click_ukenai()"></div></div>
+               
+      
+      
+                <div id="nemuke" align="center" class="ui-block-a"></div>
+            <div id="warai" align="center" class="ui-block-b"></div>
+               <div id="speed" align="center" class="ui-block-c"></div>
+               
+               
+            </div>
+       </div>
+  
+       
+        <div data-theme="a" data-role="footer" data-position="fixed">
+         
+              
+              
+                    <audio id="audio" controls>
+                             <source src="audio/odai/VP100112.MP3">
+                    </audio>
+        </div>
+    </div>
+    
+   
+    </div>
+    
+    
+<script type="text/javascript">
+
+
+function oogiri_start(){
+
+
+
+}
+
+
+
+function  click_ukeru(){
+ if ( ukeru_count < 1000 ) {
+           ukeru_count = ukeru_count + 100;
+           
+           
+                      waratta_change( ukeru_count );
+           
+           
+           }
+           
+}
+
+
+
+function  click_ukenai(){
+ if ( ukeru_count > 0 ) {
+           ukeru_count = ukeru_count - 100;
+           
+           
+           waratta_change( ukeru_count );
+           
+           
+           }
+}
+
+
+
+
+
+function  nemuke_change( nemuke_value ) {
+
+     if ( nemuke_value > 100 ) {
+
+     $('#jqmeter-container-right').jQMeter({
+    goal:'1000',
+    raised:nemuke_value.toString(10),
+    meterOrientation:'vertical',
+    counterSpeed:500,
+    animationSpeed:500,
+    width:'40px',
+      height:'200px',
+      displayTotal: true
+     });
+     }
+     else {
+     
+     
+     $('#jqmeter-container-right').jQMeter({
+    goal:'1000',
+    raised:nemuke_value.toString(10),
+    meterOrientation:'vertical',
+    counterSpeed:500,
+    animationSpeed:500,
+    width:'40px',
+      height:'200px',
+      displayTotal: false
+     });
+     
+     }
+
+}
+
+
+
+function  waratta_change( waratta_value ) {
+
+     if ( waratta_value > 100 ) {
+
+     $('#jqmeter-container-left').jQMeter({
+    goal:'1000',
+    raised:waratta_value.toString(10),
+    meterOrientation:'vertical',
+    counterSpeed:500,
+    animationSpeed:500,
+    width:'40px',
+      height:'200px',
+      displayTotal: true
+     });
+     }
+     else {
+     
+     
+     $('#jqmeter-container-left').jQMeter({
+    goal:'1000',
+    raised:waratta_value.toString(10),
+    meterOrientation:'vertical',
+    counterSpeed:500,
+    animationSpeed:500,
+    width:'40px',
+      height:'200px',
+      displayTotal: false
+     });
+     
+     }
+
+}
+
+
+
+function audio_play() {
+   audio.play();
+   
+      
+   $('#jqmeter-container-right').jQMeter({
+    goal:'1000',
+    raised:'600',
+    meterOrientation:'vertical',
+    width:'40px',
+      height:'200px',
+      
+});
+}
+ 
+function audio_pause() {
+   audio.pause();
+}
+
+
+
+
+
+
+</script>
+
+
+<SCRIPT>
+  // initial_d();
+   
+       $('#jqmeter-container-left').jQMeter({
+    goal:'1000',
+    raised:'0',
+    meterOrientation:'vertical',
+        displayTotal:false,
+    width:'40px',
+    height:'200px'
+ 
+});
+
+$('#jqmeter-container-right').jQMeter({
+      goal:'1000',
+    raised:'0',
+    displayTotal:false,
+    meterOrientation:'vertical',
+    width:'40px',
+      height:'200px',
+});
+
+
+</SCRIPT>
+</body>
+</html>
