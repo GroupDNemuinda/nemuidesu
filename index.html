@@ -96,9 +96,65 @@
 
 <script type="text/javascript">
 
+
+var    warai_c = 0;
+
+var awakeness = [ 100, 80, 78, 65, 75, 72,50,22, 40, 34, 25, 25 ];
+
+var waratta = [ 5, 8, 8, 5, 6, 3, 50, 33, 22, 2, 2, 25 ];
+
+function  check_sensor() {
+
+
+   
+/*   
+    var result = $.ajax({
+        type: 'GET',
+        url: 'http://192.168.225.25/',
+        async: false
+    }).responseText;
+    
+  */  
+   // return result;
+
+
+
+
+
+
+warai_c = warai_c + 1;
+
+awake_v = awakeness[ warai_c % 12 ];
+waratta_v = waratta[ warai_c % 12 ];
+
+ $("#warai").text(warai_c.toString(10));
+  $("#nemuke").text(awake_v.toString(10));
+  
+  set_awakeness( awake_v );
+  set_waratta( waratta_v );
+}
+
+function set_awakeness( wkv ) {
+
+    var awakes_v1= wkv * 10
+    
+    nemuke_change( awakes_v1 )
+}
+
+function set_waratta( wkv ) {
+
+    var awakes_v1= wkv * 10
+    
+     waratta_change( awakes_v1 )
+}
+
+
+ 
+
+
 var  ukeru_count = 0;  //  笑った値  0 - 1000
 
-var  sleepy = 0;  //  眠い  0 - 1000
+var  sleepy = 1000;  //  眠い  0 - 1000
 
 
 var  odai_index  = 0;   //   お題 index  0   
@@ -108,6 +164,7 @@ var  boke_index  = 0;   //   ボケ index   0
 
 var  play_mode  = 0;   //  モード    0   通常モード    1   大喜利再生モード   2   ボケ登録モード
 
+/*
 $(document).ready(function(){
     $('#jqmeter-container-left').jQMeter();
 });
@@ -115,6 +172,11 @@ $(document).ready(function(){
 $(document).ready(function(){
     $('#jqmeter-container-right').jQMeter();
 });
+*/
+
+
+setInterval("check_sensor()",1000);
+
 </script>
 
 
@@ -164,6 +226,12 @@ $(document).ready(function(){
                <div align="center" class="ui-block-c"><div align="center" height="32px"><input type="button" value="うけない" onclick="click_ukenai()"></div></div>
                
       
+      
+                <div id="nemuke" align="center" class="ui-block-a"></div>
+            <div id="warai" align="center" class="ui-block-b"></div>
+               <div id="speed" align="center" class="ui-block-c"></div>
+               
+               
             </div>
        </div>
   
@@ -309,6 +377,12 @@ function audio_play() {
 function audio_pause() {
    audio.pause();
 }
+
+
+
+
+
+
 </script>
 
 
